@@ -1,0 +1,77 @@
+[project]
+name = "llm-translator"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "hppRC", email = "hpp.ricecake@gmail.com" },
+]
+dependencies = [
+    "torch==2.1.0+cu118",
+    "pydantic>=2.4.2",
+    "tokenizers>=0.14.1",
+    "accelerate>=0.23.0",
+    "einops>=0.7.0",
+    "datasets>=2.14.6",
+    "peft>=0.6.0",
+    "bitsandbytes>=0.41.1",
+    "scikit-learn>=1.3.2",
+    "scipy>=1.10.1",
+    "sentencepiece>=0.1.99",
+    "transformers>=4.35.0",
+    "more-itertools>=10.1.0",
+    "fugashi>=1.3.0",
+    "unidic-lite>=1.0.8",
+    "trl>=0.7.7",
+    "beautifulsoup4>=4.12.2",
+    "lxml>=4.9.4",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pip>=23.3.2",
+    "setuptools>=69.0.3",
+    "wheel>=0.42.0",
+]
+
+[[tool.rye.sources]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cu118"
+type = "index"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+exclude = [".git", ".mypy_cache", ".ruff_cache", ".venv", "outputs"]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+unfixable = []
+# https://qiita.com/yuji38kwmt/items/63e82126076204923520
+select = ["F", "E", "W", "I", "B", "PL", "UP", "N"]
+ignore = [
+    "PLR0913", # Too many arguments in function definition
+    "PLR2004", # Magic value used in comparison
+    "N812", # Lowercase imported as non-lowercase
+    "F403", # unable to detect undefined names
+    "E501", # Line too long
+    "N999", # Invalid module name
+    "PLR0912", # too many branches
+]
+
+[tool.ruff.format]
+quote-style = "double"
+line-ending = "auto"
