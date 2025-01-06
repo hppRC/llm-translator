@@ -122,7 +122,7 @@ def main(args: Args):
             module.to(torch.bfloat16)
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, padding_side="right")
-    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.pad_token = tokenizer.unk_token
 
     def formatting_func(examples: dict[str, list]):
         output_texts = []
