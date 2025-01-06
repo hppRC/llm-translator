@@ -54,7 +54,7 @@ def main():
     peft_id = "hpprc/Mixtral-8x7B-Instruct-ja-en"
 
     tokenizer = AutoTokenizer.from_pretrained(model_id)
-    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.pad_token = tokenizer.unk_token
 
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
